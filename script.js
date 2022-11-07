@@ -7,7 +7,7 @@ let database = [
         "answer2": "9",
         "answer3": "42",
         "answer4": "I am not sure",
-        "correctAnswer": "7"
+        "correctAnswer": 1
     },
     {
         "image_src": "img/tropy.png",
@@ -17,7 +17,7 @@ let database = [
         "answer2": "Freetown",
         "answer3": "Zansibar",
         "answer4": "Monrovia",
-        "correctAnswer": "Freetown"
+        "correctAnswer": 2
     },
     {
         "image_src": "img/tropy.png",
@@ -27,7 +27,7 @@ let database = [
         "answer2": "Henry Ford",
         "answer3": "Albert Einstein",
         "answer4": "Nikolayev Tesla",
-        "correctAnswer": "Thomas Eddison"
+        "correctAnswer": 1
     },
 ];
 
@@ -136,9 +136,6 @@ function showButton(id) {
 }
 
 
-function countCorrectAnswers(index, answer) {
-    if (database[index].$(answer) == database[index].correctAnswer) {
-        correctAnswers += 1;
-        console.log(correctAnswers);
-    }
+function countCorrectAnswers(answer) {
+    
 }
