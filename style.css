@@ -4,8 +4,28 @@ body {
     box-sizing: border-box;
   }
 
-  #cardImage {
+.card-wrapper {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.card {
+width: 500px;
+min-width: 250px;
+}
+
+#cardImage {
     height: 200px;
     object-fit: contain;
     padding: 8px;
-  }
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.d-none {
+    display: none;
+}

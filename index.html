@@ -20,22 +20,26 @@
       </div>
     </nav>
 
-    <div class="card" style="width: 18rem;">
-      <img src="img/tropy.png" class="card-img-top" id="cardImage">
-      <div class="card-body">
-        <h5 class="card-title">Question One</h5>
-        <p class="card-text">What is a card element in bootstrap?</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">1) This</li>
-        <li class="list-group-item">2) I don't know</li>
-        <li class="list-group-item">3) Something else</li>
-      </ul>
-      <div class="card-body">
-        <a href="#" class="card-link">Previous Q</a>
-        <a href="#" class="card-link">Next Q</a>
+    <div class="card-wrapper">
+      <div class="card">
+        <img src="img/tropy.png" class="card-img-top" id="cardImage">
+        <div class="card-body">
+          <h5 id="title" class="card-title">Question One</h5>
+          <p id="question" class="card-text">What is a card element in bootstrap?</p>
+        </div>
+        <div class="list-group">
+          <button id="answer1" type="button" class="list-group-item list-group-item-action">Answer One</button>
+          <button id="answer2" type="button" class="list-group-item list-group-item-action">Answer Two</button>
+          <button id="answer3" type="button" class="list-group-item list-group-item-action">Answer Three</button>
+          <button id="answer4" type="button" class="list-group-item list-group-item-action">Answer Four</button>
+        </div>
+        <div class="card-body">
+          <a onclick="showLastQuestion()" id="btnLast" class="btn btn-primary" href="#" role="button">Last Question</a>
+          <a onclick="showNextQuestion()" id="btnNext" class="btn btn-primary" href="#" role="button">Next Question</a>
+        </div>
       </div>
     </div>
 
+    <script src="script.js"></script>
   </body>
 </html>
