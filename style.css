@@ -5,14 +5,20 @@ body {
   }
 
 .card-wrapper {
-display: flex;
-align-items: center;
-justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card {
-width: 500px;
-min-width: 250px;
+    width: 500px;
+    min-width: 250px;
+}
+
+.list-group {
+    width: 460px;
+    min-width: 230px;
+    align-self: center;
 }
 
 #cardImage {
@@ -23,7 +29,7 @@ min-width: 250px;
 
 .card-body {
     display: flex;
-    justify-content: space-between !important;
+    justify-content: space-between;
 }
 
 .d-none {

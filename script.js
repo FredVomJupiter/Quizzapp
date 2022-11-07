@@ -2,31 +2,36 @@ let database = [
     {
         "image_src": "img/tropy.png",
         "title": "Question One",
-        "question": "What is the first Question?",
-        "answer1": "Answer One",
-        "answer2": "Answer Two",
-        "answer3": "Answer Three",
-        "answer4": "Answer Four"
+        "question": "What is 1+2*3?",
+        "answer1": "7",
+        "answer2": "9",
+        "answer3": "42",
+        "answer4": "I am not sure",
+        "correctAnswer": "7"
     },
     {
         "image_src": "img/tropy.png",
         "title": "Question Two",
-        "question": "What is the second Question?",
-        "answer1": "Answer One",
-        "answer2": "Answer Two",
-        "answer3": "Answer Three",
-        "answer4": "Answer Four"
+        "question": "What is the capital of Sierra Leone?",
+        "answer1": "Abidjan",
+        "answer2": "Freetown",
+        "answer3": "Zansibar",
+        "answer4": "Monrovia",
+        "correctAnswer": "Freetown"
     },
     {
         "image_src": "img/tropy.png",
         "title": "Question Three",
-        "question": "What is the third Question?",
-        "answer1": "Answer One",
-        "answer2": "Answer Two",
-        "answer3": "Answer Three",
-        "answer4": "Answer Four"
+        "question": "Who invented the light bulp?",
+        "answer1": "Thomas Eddison",
+        "answer2": "Henry Ford",
+        "answer3": "Albert Einstein",
+        "answer4": "Nikolayev Tesla",
+        "correctAnswer": "Thomas Eddison"
     },
 ];
+
+let correctAnswers = 0;
 
 //Elements by IDs
 let image = document.getElementById('cardImage');
@@ -55,7 +60,6 @@ function render(index) {
     answer2.innerHTML = database[index].answer2;
     answer3.innerHTML = database[index].answer3;
     answer4.innerHTML = database[index].answer4;
-    
 }
 
 
@@ -72,7 +76,7 @@ function clearCard() {
 function showNextQuestion() {
     if (title.innerHTML == database[database.length-1].title) {
         clearCard();
-        title.innerHTML = "The End";
+        title.innerHTML = "Your Results";
         hideAnswers();
         hideButton('btnNext');
     } else {
@@ -89,7 +93,7 @@ function showNextQuestion() {
 function showLastQuestion() {
     if (title.innerHTML == database[0].title) {
 
-    } else if (title.innerHTML == 'The End') {
+    } else if (title.innerHTML == 'Your Results') {
         showAnswers();
         showButton('btnNext');
         render(database.length-1);
@@ -129,4 +133,12 @@ function hideButton(id) {
 function showButton(id) {
     let btn = document.getElementById(`${id}`);
     btn.classList.remove('d-none');
+}
+
+
+function countCorrectAnswers(index, answer) {
+    if (database[index].$(answer) == database[index].correctAnswer) {
+        correctAnswers += 1;
+        console.log(correctAnswers);
+    }
 }
