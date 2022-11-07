@@ -1,0 +1,11 @@
+body {
+    margin:0;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  #cardImage {
+    height: 200px;
+    object-fit: contain;
+    padding: 8px;
+  }
