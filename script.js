@@ -7,7 +7,8 @@ let database = [
         "answer2": "9",
         "answer3": "42",
         "answer4": "I am not sure",
-        "correctAnswer": 1
+        "correctAnswer": 1,
+        "answerGiven": false
     },
     {
         "image_src": "img/tropy.png",
@@ -17,7 +18,8 @@ let database = [
         "answer2": "Freetown",
         "answer3": "Zansibar",
         "answer4": "Monrovia",
-        "correctAnswer": 2
+        "correctAnswer": 2,
+        "answerGiven": false
     },
     {
         "image_src": "img/tropy.png",
@@ -27,7 +29,8 @@ let database = [
         "answer2": "Henry Ford",
         "answer3": "Albert Einstein",
         "answer4": "Nikolayev Tesla",
-        "correctAnswer": 1
+        "correctAnswer": 1,
+        "answerGiven": false
     },
 ];
 
@@ -44,23 +47,17 @@ render(0);
 
 
 function render(index) {
-    if (index == 0) {
-        hideButton('btnLast');
-    } else {
-        showButton('btnLast');
-    }
     clearCard();
+    showButton('btnNext');
+    hideButton('btnRestart');
+    restartCounter();
+    showAnswers();
     if (index < database.length) {
         image.src = database[index].image_src;
         title.innerHTML = database[index].title;
         question.innerHTML = database[index].question;
         createHtmlTemplate(index);
         createAnswers(index);
-    } else {
-        image.src = database[index].image_src;
-        title.innerHTML = database[index].title;
-        question.innerHTML = database[index].question;
-        listGroup.innerHTML = `You have ${correctAnswers}/3 correct answers!`;
     }
 }
 
@@ -96,31 +93,14 @@ function clearCard() {
 function showNextQuestion() {
     if (title.innerHTML == database[database.length-1].title) {
         clearCard();
-        title.innerHTML = "Your Results";
+        title.innerHTML = `Your Results: ${correctAnswers}/${database.length}!`;
         hideAnswers();
         hideButton('btnNext');
+        showButton('btnRestart');
     } else {
         for (i = 0; i < database.length; i++) {
             if (title.innerHTML == database[i].title && i < database.length - 1) {
                 render(i+1);
-                break; //Breaks if rendered so that it does not continue with for-loop and overwrite...
-            }
-        }
-    }  
-}
-
-
-function showLastQuestion() {
-    if (title.innerHTML == database[0].title) {
-
-    } else if (title.innerHTML == 'Your Results') {
-        showAnswers();
-        showButton('btnNext');
-        render(database.length-1);
-    } else {
-        for (i = 0; i < database.length; i++) {
-            if (title.innerHTML == database[i].title && i >= 0) {
-                render(i-1);
                 break; //Breaks if rendered so that it does not continue with for-loop and overwrite...
             }
         }
@@ -151,11 +131,23 @@ function showButton(id) {
 
 
 function countCorrectAnswers(index, i) {
-    if (database[index].correctAnswer == i) {
+    let button = document.getElementById(`answer${i}`);
+    if (database[index].correctAnswer == i && database[index].answerGiven == false) {
+        database[index].answerGiven = true;
         correctAnswers +=1;
-        let button = document.getElementById(`answer${i}`);
         button.classList.add('active');
     } else {
-        button.classList.add('disabled');
+        button.classList.add('active');
+    }
+}
+
+
+function restartCounter(index) {
+    //Restart only when index = 0 shall be rendered.
+    if (index == 0) {
+        correctAnswers = 0; //correctAnswer Counter must be resetted
+        for (i = 0; i < database.length; i++) {
+            database[index].answerGiven = false; //The answerGiven Boolean must be resetted
+        }
     }
 }
