@@ -37,10 +37,7 @@ let correctAnswers = 0;
 let image = document.getElementById('cardImage');
 let title = document.getElementById('title');
 let question = document.getElementById('question');
-let answer1 = document.getElementById('answer1');
-let answer2 = document.getElementById('answer2');
-let answer3 = document.getElementById('answer3');
-let answer4 = document.getElementById('answer4');
+let listGroup = document.getElementById('listGroup');
 
 //Only rendered once in the beginning with Question One
 render(0);
@@ -53,9 +50,35 @@ function render(index) {
         showButton('btnLast');
     }
     clearCard();
-    image.src = database[index].image_src;
-    title.innerHTML = database[index].title;
-    question.innerHTML = database[index].question;
+    if (index < database.length) {
+        image.src = database[index].image_src;
+        title.innerHTML = database[index].title;
+        question.innerHTML = database[index].question;
+        createHtmlTemplate(index);
+        createAnswers(index);
+    } else {
+        image.src = database[index].image_src;
+        title.innerHTML = database[index].title;
+        question.innerHTML = database[index].question;
+        listGroup.innerHTML = `You have ${correctAnswers}/3 correct answers!`;
+    }
+}
+
+
+function createHtmlTemplate(index) {
+    for (i = 1; i < 5; i++) {
+        listGroup.innerHTML += `
+            <button onclick="countCorrectAnswers(${index},${i})" id="answer${i}" type="button" class="list-group-item list-group-item-action"></button>
+        `;
+    }
+}
+
+
+function createAnswers(index) {
+    let answer1 = document.getElementById('answer1');
+    let answer2 = document.getElementById('answer2');
+    let answer3 = document.getElementById('answer3');
+    let answer4 = document.getElementById('answer4');
     answer1.innerHTML = database[index].answer1;
     answer2.innerHTML = database[index].answer2;
     answer3.innerHTML = database[index].answer3;
@@ -66,10 +89,7 @@ function render(index) {
 function clearCard() {
     title.innerHTML = '';
     question.innerHTML = '';
-    answer1.innerHTML = '';
-    answer2.innerHTML = '';
-    answer3.innerHTML = '';
-    answer4.innerHTML = '';
+    listGroup.innerHTML = '';
 }
 
 
@@ -109,18 +129,12 @@ function showLastQuestion() {
 
 
 function hideAnswers() {
-    answer1.classList.add('d-none');
-    answer2.classList.add('d-none');
-    answer3.classList.add('d-none');
-    answer4.classList.add('d-none');
+    listGroup.classList.add('d-none');
 }
 
 
 function showAnswers() {
-    answer1.classList.remove('d-none');
-    answer2.classList.remove('d-none');
-    answer3.classList.remove('d-none');
-    answer4.classList.remove('d-none');
+    listGroup.classList.remove('d-none');
 }
 
 
@@ -136,6 +150,12 @@ function showButton(id) {
 }
 
 
-function countCorrectAnswers(answer) {
-    
+function countCorrectAnswers(index, i) {
+    if (database[index].correctAnswer == i) {
+        correctAnswers +=1;
+        let button = document.getElementById(`answer${i}`);
+        button.classList.add('active');
+    } else {
+        button.classList.add('disabled');
+    }
 }
