@@ -49,8 +49,8 @@ render(0);
 function render(index) {
     clearCard();
     showButton('btnNext');
-    hideButton('btnRestart');
-    restartCounter();
+    hideButton('btnRestart'); 
+    restartCounter(index);
     showAnswers();
     if (index < database.length) {
         image.src = database[index].image_src;
@@ -135,9 +135,9 @@ function countCorrectAnswers(index, i) {
     if (database[index].correctAnswer == i && database[index].answerGiven == false) {
         database[index].answerGiven = true;
         correctAnswers +=1;
-        button.classList.add('active');
+        giveFeedback(button.innerHTML, "correct");
     } else {
-        button.classList.add('active');
+        giveFeedback(button.innerHTML, "incorrect");
     }
 }
 
@@ -147,7 +147,21 @@ function restartCounter(index) {
     if (index == 0) {
         correctAnswers = 0; //correctAnswer Counter must be resetted
         for (i = 0; i < database.length; i++) {
-            database[index].answerGiven = false; //The answerGiven Boolean must be resetted
+            database[i].answerGiven = false; //The answerGiven Boolean must be resetted
         }
     }
+}
+
+
+function giveFeedback(givenAnswer, response) {
+    listGroup.innerHTML = '';
+        if (response == "correct") {
+            listGroup.innerHTML = `
+                <button class="list-group-item list-group-item-action bg-success">${givenAnswer + ` is ` + response}</button>
+            `;
+        } else {
+            listGroup.innerHTML = `
+                <button class="list-group-item list-group-item-action bg-danger">${givenAnswer + ` is ` + response}</button>
+            `;
+        }   
 }
