@@ -49,7 +49,8 @@ render(0);
 function render(index) {
     clearCard();
     showButton('btnNext');
-    hideButton('btnRestart'); 
+    hideButton('btnRestart');
+    drawQuestionNumber(index);
     restartCounter(index);
     showAnswers();
     if (index < database.length) {
@@ -93,10 +94,11 @@ function clearCard() {
 function showNextQuestion() {
     if (title.innerHTML == database[database.length-1].title) {
         clearCard();
-        title.innerHTML = `Your Results: ${correctAnswers}/${database.length}!`;
+        title.innerHTML = `You have ${correctAnswers} / ${database.length} correct answers!`;
         hideAnswers();
         hideButton('btnNext');
         showButton('btnRestart');
+        drawQuestionNumber(database.length);
     } else {
         for (i = 0; i < database.length; i++) {
             if (title.innerHTML == database[i].title && i < database.length - 1) {
@@ -127,6 +129,15 @@ function hideButton(id) {
 function showButton(id) {
     let btn = document.getElementById(`${id}`);
     btn.classList.remove('d-none');
+}
+
+
+function drawQuestionNumber(index) {
+    let span = document.getElementById('questionCounter');
+    span.innerHTML = '';
+    if (index < database.length) {
+        span.innerHTML = `Question number ${index+1} of ${database.length}`;
+    }
 }
 
 
