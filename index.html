@@ -13,32 +13,36 @@
   </head>
 
   <body>
-        <!-- As a link -->
-    <nav class="navbar bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Quizzzzzz</a>
-      </div>
-    </nav>
-
-    <div class="card-wrapper">
-      <div class="card">
-        <img src="img/tropy.png" class="card-img-top" id="cardImage">
-        <div class="card-body">
-          <h5 id="title" class="card-title">Question One</h5>
-          <p id="question" class="card-text">What is a card element in bootstrap?</p>
+    <img src="img/background.jpg" class="background-image">
+    <div class="master-wrapp">
+      <nav class="navbar bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Quizzzzzz</a>
         </div>
-        <div class="list-group" id="listGroup">
-
-        
+      </nav>
+  
+      <div class="card-wrapper">
+        <div class="card">
+          <img src="img/tropy.png" class="card-img-top" id="cardImage">
+          <div class="card-body">
+            <h5 id="title" class="card-title">Question One</h5>
+            <p id="question" class="card-text">What is a card element in bootstrap?</p>
+          </div>
+          <div class="list-group" id="listGroup">
+  
+          
+          </div>
+          <div class="card-body">
+              <span id="questionCounter"></span>
+            <a onclick="showNextQuestion()" id="btnNext" class="btn btn-primary" href="#" role="button">Next Question</a>
+            <a onclick="render(0)" id="btnRestart" class="btn btn-primary d-none" href="#" role="button">Restart</a>
+          </div>
+  
         </div>
-        <div class="card-body">
-            <span id="questionCounter"></span>
-          <a onclick="showNextQuestion()" id="btnNext" class="btn btn-primary" href="#" role="button">Next Question</a>
-          <a onclick="render(0)" id="btnRestart" class="btn btn-primary d-none" href="#" role="button">Restart</a>
-        </div>
-
       </div>
     </div>
+        <!-- As a link -->
+    
 
     <script src="script.js"></script>
   </body>
